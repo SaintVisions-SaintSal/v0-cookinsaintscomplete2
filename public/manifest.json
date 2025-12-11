@@ -1,0 +1,20 @@
+{
+  "name": "CookinSaints™ - Where Hustlers Build Wealth",
+  "short_name": "CookinSaints",
+  "description": "Unified investment platform combining traditional securities, cryptocurrency, and tokenized real estate. Powered by SaintSal™.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F0F0F",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/saintsal-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "business"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7"
+}

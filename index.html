@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Primary Meta Tags -->
+    <title>CookinSaints™ - Where Hustlers Build Wealth</title>
+    <meta name="title" content="CookinSaints™ - Where Hustlers Build Wealth" />
+    <meta name="description" content="AI-native multi-asset investment platform. Trade stocks, crypto, invest in fractional real estate (CSREC), and earn 9-12% on private lending. Powered by SaintSal™ + HACP™." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cookinsaints.com/" />
+    <meta property="og:title" content="CookinSaints™ - Where Hustlers Build Wealth" />
+    <meta property="og:description" content="AI-native multi-asset investment platform. Trade stocks, crypto, invest in fractional real estate (CSREC), and earn 9-12% on private lending." />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://cookinsaints.com/" />
+    <meta property="twitter:title" content="CookinSaints™ - Where Hustlers Build Wealth" />
+    <meta property="twitter:description" content="AI-native multi-asset investment platform. Trade stocks, crypto, invest in fractional real estate (CSREC), and earn 9-12% on private lending." />
+    <meta property="twitter:image" content="/og-image.png" />
+    
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CookinSaints" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0F0F0F" />
+    <meta name="msapplication-TileColor" content="#0F0F0F" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html, body, #root {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+      
+      body {
+        background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+      }
+      
+      #root {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      
+      /* Initial loading animation */
+      .initial-loader {
+        position: fixed;
+        inset: 0;
+        background: #0F0F0F;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+      
+      .initial-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loader-robot {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(145deg, #B8960C 0%, #D4AF37 50%, #FFD700 100%);
+        border-radius: 16px;
+        animation: pulse 2s ease-in-out infinite;
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+      }
+      
+      .loader-text {
+        margin-top: 24px;
+        font-size: 28px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #B8960C 0%, #D4AF37 50%, #FFD700 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 2px;
+      }
+      
+      .loader-subtitle {
+        color: #888;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      
+      /* Responsive */
+      @media (max-width: 480px) {
+        #root {
+          padding: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Initial loader (hidden once React loads) -->
+    <div class="initial-loader" id="initial-loader">
+      <div class="loader-robot"></div>
+      <div class="loader-text">CookinSaints</div>
+      <div class="loader-subtitle">Where Hustlers Build Wealth</div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script type="module" src="/src/index.jsx"></script>
+    
+    <script>
+      // Hide initial loader once React app is ready
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('initial-loader')?.classList.add('hidden');
+        }, 500);
+      });
+    </script>
+  </body>
+</html>
