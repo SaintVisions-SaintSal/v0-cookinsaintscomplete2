@@ -19,7 +19,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "CookinSaints™ - Where Hustlers Build Wealth",
+  title: "CookinSaints - Where Hustlers Build Wealth",
   description:
     "Unified investment platform combining traditional securities, cryptocurrency, and tokenized real estate. Powered by SaintSal™ AI and HACP™ technology.",
   keywords: [
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     "SaintSal",
     "CSREC",
   ],
-  authors: [{ name: "CookinSaints™" }],
-  creator: "CookinSaints™",
-  publisher: "CookinSaints™",
+  authors: [{ name: "CookinSaints" }],
+  creator: "CookinSaints",
+  publisher: "CookinSaints",
   applicationName: "CookinSaints",
   generator: "v0.app",
   metadataBase: new URL("https://cookinsaints.com"),
@@ -43,10 +43,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://cookinsaints.com",
-    title: "CookinSaints™ - Where Hustlers Build Wealth",
+    title: "CookinSaints - Where Hustlers Build Wealth",
     description:
       "Unified investment platform combining traditional securities, cryptocurrency, and tokenized real estate.",
-    siteName: "CookinSaints™",
+    siteName: "CookinSaints",
     images: [
       {
         url: "/saintsal-icon.png",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CookinSaints™ - Where Hustlers Build Wealth",
+    title: "CookinSaints - Where Hustlers Build Wealth",
     description:
       "Unified investment platform combining traditional securities, cryptocurrency, and tokenized real estate.",
     images: ["/saintsal-icon.png"],
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "CookinSaints™",
+    title: "CookinSaints",
   },
   formatDetection: {
     telephone: false,
