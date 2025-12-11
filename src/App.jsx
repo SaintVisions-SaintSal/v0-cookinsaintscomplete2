@@ -23,10 +23,10 @@ export const useApp = () => useContext(AppContext)
 
 export const colors = {
   // Core Background
-  background: "#0F0F0F",
-  surface: "#1A1A1A",
-  surfaceLight: "#242424",
-  surfaceHover: "#2A2A2A",
+  background: "#000000",
+  surface: "rgba(255, 255, 255, 0.03)",
+  surfaceLight: "rgba(255, 255, 255, 0.05)",
+  surfaceHover: "rgba(255, 255, 255, 0.08)",
 
   // Gold Palette (SaintSal™ Brand)
   gold: "#D4AF37",
@@ -44,12 +44,12 @@ export const colors = {
 
   // Text
   textPrimary: "#FFFFFF",
-  textSecondary: "#888888",
-  textMuted: "#555555",
+  textSecondary: "#999999",
+  textMuted: "#666666",
 
   // Borders & Dividers
-  border: "#2A2A2A",
-  borderLight: "#3A3A3A",
+  border: "rgba(255, 255, 255, 0.06)",
+  borderLight: "rgba(255, 255, 255, 0.1)",
 
   // Semantic
   success: "#00FF88",
@@ -61,7 +61,8 @@ export const colors = {
 // Neon glow effect generator
 export const neonGlow = (color, intensity = 1) => ({
   color: color,
-  textShadow: `0 0 ${10 * intensity}px ${color}, 0 0 ${20 * intensity}px ${color}, 0 0 ${30 * intensity}px ${color}`,
+  textShadow: `0 0 ${8 * intensity}px ${color}80, 0 0 ${16 * intensity}px ${color}60, 0 0 ${24 * intensity}px ${color}40`,
+  filter: `drop-shadow(0 0 ${6 * intensity}px ${color}40)`,
 })
 
 // Gold gradient for text
@@ -460,13 +461,16 @@ export const Card = ({ children, style = {}, glow = false, onClick, className = 
     onClick={onClick}
     className={className}
     style={{
-      background: colors.surface,
-      borderRadius: 16,
-      padding: 16,
-      border: `1px solid ${colors.border}`,
-      boxShadow: glow ? `0 0 20px rgba(212, 175, 55, 0.15)` : "0 4px 12px rgba(0,0,0,0.3)",
+      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
+      backdropFilter: "blur(20px)",
+      borderRadius: 24,
+      padding: 20,
+      border: `1px solid ${glow ? "rgba(212, 175, 55, 0.2)" : "rgba(255, 255, 255, 0.08)"}`,
+      boxShadow: glow
+        ? "0 8px 32px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.1) inset"
+        : "0 8px 32px rgba(0, 0, 0, 0.4)",
       cursor: onClick ? "pointer" : "default",
-      transition: "all 0.3s ease",
+      transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
       ...style,
     }}
   >
@@ -487,9 +491,9 @@ export const Button = ({
   onClick,
 }) => {
   const sizes = {
-    small: { padding: "8px 16px", fontSize: 13 },
-    medium: { padding: "14px 24px", fontSize: 16 },
-    large: { padding: "18px 32px", fontSize: 18 },
+    small: { padding: "10px 18px", fontSize: 13 },
+    medium: { padding: "16px 28px", fontSize: 16 },
+    large: { padding: "20px 36px", fontSize: 18 },
   }
 
   return (
@@ -498,25 +502,42 @@ export const Button = ({
       disabled={disabled || loading}
       style={{
         ...sizes[size],
-        borderRadius: 12,
-        border: primary || danger ? "none" : `1px solid ${colors.gold}`,
+        borderRadius: 16,
+        border: primary || danger ? "none" : `1px solid rgba(212, 175, 55, 0.3)`,
         background: danger
-          ? `linear-gradient(135deg, #CC2244 0%, ${colors.neonRed} 100%)`
+          ? `linear-gradient(135deg, #FF3366 0%, #CC2244 100%)`
           : primary
             ? `linear-gradient(135deg, ${colors.goldDark} 0%, ${colors.gold} 50%, ${colors.goldLight} 100%)`
-            : "transparent",
-        color: primary || danger ? "#0F0F0F" : colors.gold,
+            : "rgba(255, 255, 255, 0.04)",
+        color: primary || danger ? "#000000" : colors.gold,
         fontWeight: 600,
         cursor: disabled ? "not-allowed" : "pointer",
-        transition: "all 0.3s ease",
-        boxShadow: primary ? "0 4px 15px rgba(212, 175, 55, 0.4)" : "none",
+        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        boxShadow: primary
+          ? "0 8px 24px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset"
+          : "0 4px 12px rgba(0, 0, 0, 0.3)",
         opacity: disabled ? 0.5 : 1,
         width: fullWidth ? "100%" : "auto",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         gap: 8,
+        transform: "translateY(0)",
         ...style,
+      }}
+      onMouseEnter={(e) => {
+        if (!disabled) {
+          e.currentTarget.style.transform = "translateY(-2px)"
+          e.currentTarget.style.boxShadow = primary
+            ? "0 12px 32px rgba(212, 175, 55, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2) inset"
+            : "0 8px 20px rgba(0, 0, 0, 0.4)"
+        }
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0)"
+        e.currentTarget.style.boxShadow = primary
+          ? "0 8px 24px rgba(212, 175, 55, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset"
+          : "0 4px 12px rgba(0, 0, 0, 0.3)"
       }}
     >
       {loading && <LoadingSpinner size={16} />}
@@ -552,7 +573,7 @@ export const Input = ({ type = "text", placeholder, value, onChange, icon, error
         <span
           style={{
             position: "absolute",
-            left: 16,
+            left: 18,
             color: colors.textMuted,
             fontSize: 18,
           }}
@@ -567,14 +588,23 @@ export const Input = ({ type = "text", placeholder, value, onChange, icon, error
         onChange={onChange}
         style={{
           width: "100%",
-          background: colors.surface,
-          border: `1px solid ${error ? colors.error : colors.border}`,
-          borderRadius: 12,
-          padding: icon ? "16px 16px 16px 48px" : "16px",
+          background: "rgba(255, 255, 255, 0.04)",
+          backdropFilter: "blur(10px)",
+          border: `1px solid ${error ? colors.error : "rgba(255, 255, 255, 0.08)"}`,
+          borderRadius: 16,
+          padding: icon ? "18px 18px 18px 52px" : "18px",
           color: colors.textPrimary,
           fontSize: 16,
           outline: "none",
-          transition: "border-color 0.3s ease",
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = error ? colors.error : "rgba(212, 175, 55, 0.5)"
+          e.currentTarget.style.boxShadow = `0 0 0 4px ${error ? "rgba(255, 51, 102, 0.1)" : "rgba(212, 175, 55, 0.1)"}`
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.borderColor = error ? colors.error : "rgba(255, 255, 255, 0.08)"
+          e.currentTarget.style.boxShadow = "none"
         }}
       />
     </div>
@@ -1376,7 +1406,7 @@ const HomeScreen = () => {
           </span>
         </h2>
         <p style={{ margin: "0 0 16px 0", fontSize: 14 }}>
-          <span style={{ ...neonGlow(colors.neonGreen), fontWeight: 600 }}>
+          <span style={{ ...neonGlow(colors.neonGreen, 0.5), fontWeight: 600 }}>
             ▲ {formatCurrency(portfolio.dayChange)} ({formatPercent(portfolio.dayChangePercent)})
           </span>
           <span style={{ color: colors.textSecondary }}> this month</span>
@@ -1476,7 +1506,7 @@ const HomeScreen = () => {
             marginBottom: 12,
           }}
         >
-          <p style={{ color: colors.textSecondary, fontSize: 14, margin: 0 }}>RECENT ACTIVITY</p>
+          <p style={{ color: colors.textSecondary, fontSize: 14, margin: 0 }}>RECENTACTIVITY</p>
           <span style={{ color: colors.gold, fontSize: 14, cursor: "pointer" }}>See All →</span>
         </div>
         <Card>
@@ -1596,7 +1626,7 @@ const TradeScreen = () => {
             <h2 style={{ fontSize: 28, fontWeight: 700, margin: "0 0 4px 0", color: colors.textPrimary }}>
               {formatCurrency(trading.portfolioValue, 0)}
             </h2>
-            <p style={{ ...neonGlow(colors.neonGreen), fontSize: 14, margin: 0, fontWeight: 600 }}>
+            <p style={{ ...neonGlow(colors.neonGreen, 0.5), fontSize: 14, margin: 0, fontWeight: 600 }}>
               ▲ {formatCurrency(trading.dayChange)} ({formatPercent(trading.dayChangePercent)}) today
             </p>
           </div>

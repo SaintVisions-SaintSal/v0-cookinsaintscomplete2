@@ -13,21 +13,19 @@ import { useState, useEffect } from "react"
 // ============================================
 
 export const tokens = {
-  // Colors
   colors: {
-    // Core Background
-    background: "#0F0F0F",
-    surface: "#1A1A1A",
-    surfaceLight: "#242424",
-    surfaceHover: "#2A2A2A",
-    surfaceElevated: "#2E2E2E",
+    // Core
+    background: "#000000",
+    surface: "rgba(255, 255, 255, 0.03)",
+    surfaceLight: "rgba(255, 255, 255, 0.05)",
+    surfaceElevated: "rgba(255, 255, 255, 0.07)",
+    surfaceHover: "rgba(255, 255, 255, 0.08)",
 
-    // Gold Palette (SaintSal™ Brand)
+    // Gold Brand
     gold: "#D4AF37",
     goldLight: "#FFD700",
     goldDark: "#B8960C",
     goldMuted: "#9A7B2C",
-    goldSubtle: "rgba(212, 175, 55, 0.1)",
 
     // Neon Accents
     neonCyan: "#00FFFF",
@@ -36,58 +34,24 @@ export const tokens = {
     neonRed: "#FF3366",
     neonBlue: "#0088FF",
     neonOrange: "#FF8800",
-    neonPink: "#FF00AA",
 
     // Text
     textPrimary: "#FFFFFF",
-    textSecondary: "#888888",
-    textMuted: "#555555",
-    textInverse: "#0F0F0F",
+    textSecondary: "#999999",
+    textMuted: "#666666",
+    textInverse: "#000000",
 
-    // Borders & Dividers
-    border: "#2A2A2A",
-    borderLight: "#3A3A3A",
-    borderGold: "rgba(212, 175, 55, 0.3)",
+    // Borders
+    border: "rgba(255, 255, 255, 0.06)",
+    borderLight: "rgba(255, 255, 255, 0.1)",
+    borderGold: "rgba(212, 175, 55, 0.2)",
 
     // Semantic
     success: "#00FF88",
     error: "#FF3366",
     warning: "#FFB800",
     info: "#0088FF",
-
-    // Overlays
-    overlayDark: "rgba(0, 0, 0, 0.7)",
-    overlayLight: "rgba(255, 255, 255, 0.05)",
   },
-
-  // Typography
-  typography: {
-    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif',
-    fontFamilyMono: '"SF Mono", "Fira Code", Consolas, monospace',
-
-    // Font Sizes
-    xs: 10,
-    sm: 12,
-    base: 14,
-    md: 16,
-    lg: 18,
-    xl: 20,
-    "2xl": 24,
-    "3xl": 28,
-    "4xl": 32,
-    "5xl": 36,
-    "6xl": 42,
-    "7xl": 48,
-
-    // Font Weights
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-    extrabold: 800,
-  },
-
-  // Spacing
   spacing: {
     xs: 4,
     sm: 8,
@@ -96,42 +60,42 @@ export const tokens = {
     lg: 20,
     xl: 24,
     "2xl": 32,
-    "3xl": 40,
-    "4xl": 48,
-    "5xl": 64,
   },
-
-  // Border Radius
   radius: {
-    sm: 6,
-    md: 8,
+    sm: 8,
     base: 12,
     lg: 16,
     xl: 20,
     "2xl": 24,
     full: 9999,
   },
-
-  // Shadows
   shadows: {
     sm: "0 2px 8px rgba(0, 0, 0, 0.3)",
-    md: "0 4px 12px rgba(0, 0, 0, 0.4)",
-    lg: "0 8px 24px rgba(0, 0, 0, 0.5)",
-    xl: "0 12px 32px rgba(0, 0, 0, 0.6)",
-    gold: "0 4px 20px rgba(212, 175, 55, 0.4)",
-    goldIntense: "0 8px 30px rgba(212, 175, 55, 0.6)",
-    neon: (color) => `0 0 20px ${color}, 0 0 40px ${color}`,
+    md: "0 8px 32px rgba(0, 0, 0, 0.4)",
+    lg: "0 16px 48px rgba(0, 0, 0, 0.5)",
+    glow: "0 0 20px rgba(212, 175, 55, 0.3)",
+    glowLg: "0 0 40px rgba(212, 175, 55, 0.4)",
   },
-
-  // Transitions
   transitions: {
-    fast: "0.15s ease",
-    base: "0.2s ease",
-    slow: "0.3s ease",
-    smooth: "0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+    fast: "0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+    base: "0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    slow: "0.4s cubic-bezier(0.4, 0, 0.2, 1)",
   },
-
-  // Z-Index
+  typography: {
+    xs: "12px",
+    sm: "14px",
+    base: "16px",
+    lg: "18px",
+    xl: "20px",
+    "2xl": "24px",
+    "3xl": "30px",
+    "4xl": "36px",
+    "5xl": "48px",
+    regular: 400,
+    medium: 500,
+    semibold: 600,
+    bold: 700,
+  },
   zIndex: {
     base: 1,
     dropdown: 10,
@@ -150,7 +114,8 @@ export const tokens = {
 // Neon glow effect generator
 export const neonGlow = (color, intensity = 1) => ({
   color: color,
-  textShadow: `0 0 ${10 * intensity}px ${color}, 0 0 ${20 * intensity}px ${color}, 0 0 ${30 * intensity}px ${color}`,
+  textShadow: `0 0 ${8 * intensity}px ${color}80, 0 0 ${16 * intensity}px ${color}60, 0 0 ${24 * intensity}px ${color}40`,
+  filter: `drop-shadow(0 0 ${6 * intensity}px ${color}40)`,
 })
 
 // Gold gradient for text
@@ -278,29 +243,29 @@ export const Card = ({
   variant = "default",
   onClick,
   className = "",
-  padding = tokens.spacing.base,
+  padding = tokens.spacing.lg,
   elevated = false,
 }) => {
   const variants = {
     default: {
-      background: tokens.colors.surface,
+      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)",
       border: `1px solid ${tokens.colors.border}`,
     },
     elevated: {
-      background: tokens.colors.surfaceElevated,
+      background: "linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.04) 100%)",
       border: `1px solid ${tokens.colors.borderLight}`,
     },
     gold: {
-      background: surfaceGradient(tokens.colors.gold, 0.15),
+      background: "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)",
       border: `1px solid ${tokens.colors.borderGold}`,
     },
     success: {
-      background: surfaceGradient(tokens.colors.neonGreen, 0.1),
-      border: `1px solid rgba(0, 255, 136, 0.3)`,
+      background: "linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 255, 136, 0.02) 100%)",
+      border: `1px solid rgba(0, 255, 136, 0.2)`,
     },
     purple: {
-      background: surfaceGradient(tokens.colors.neonPurple, 0.1),
-      border: `1px solid rgba(191, 0, 255, 0.3)`,
+      background: "linear-gradient(135deg, rgba(191, 0, 255, 0.1) 0%, rgba(191, 0, 255, 0.02) 100%)",
+      border: `1px solid rgba(191, 0, 255, 0.2)`,
     },
   }
 
@@ -310,10 +275,11 @@ export const Card = ({
       className={className}
       style={{
         ...variants[variant],
-        borderRadius: tokens.radius.lg,
+        backdropFilter: "blur(20px)",
+        borderRadius: tokens.radius.xl,
         padding: padding,
         boxShadow: glow
-          ? `0 0 20px rgba(${hexToRgb(glowColor)}, 0.2)`
+          ? `0 8px 32px rgba(${hexToRgb(glowColor)}, 0.15), 0 0 0 1px ${glowColor}20 inset`
           : elevated
             ? tokens.shadows.lg
             : tokens.shadows.md,

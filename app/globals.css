@@ -85,16 +85,165 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   body {
     @apply bg-background text-foreground;
-    /* Added dark background for CookinSaints app */
-    background: #0f0f0f;
+    /* Pure black background with premium aesthetics */
+    background: #000000;
     margin: 0;
     padding: 0;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  }
+
+  /* Smooth scrolling for better UX */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.5);
+  }
+
+  /* Global animations */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: #ffffff;
+  }
+
+  ::-moz-selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: #ffffff;
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    outline: 2px solid rgba(212, 175, 55, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Disable focus outline for mouse users */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Image rendering */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Button reset */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* Input reset */
+  input,
+  textarea {
+    font-family: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 0.5;
+  }
+
+  /* Remove default number input arrows */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 }
